@@ -3,6 +3,7 @@
 
 void setup(void);
 void loop(void);
+void cleanup(void);  // 終了処理関数の宣言
 
 __attribute__((weak))
 int user_func(bool* running)
@@ -12,6 +13,7 @@ int user_func(bool* running)
   {
     loop();
   } while (*running);
+  cleanup();  // 終了処理の呼び出し
   return 0;
 }
 
