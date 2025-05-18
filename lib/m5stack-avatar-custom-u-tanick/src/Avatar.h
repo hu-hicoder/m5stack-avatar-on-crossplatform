@@ -69,7 +69,9 @@ class Avatar {
   void getGaze(float *vertical, float *horizontal);
   void setExpression(Expression exp);
   void setEyeOpenRatio(float ratio);
+  float getEyeOpenRatio() const { return eyeOpenRatio; }
   void setMouthOpenRatio(float ratio);
+  float getMouthOpenRatio() const { return mouthOpenRatio; }
   void setSpeechText(const char *speechText);
   void setSpeechFont(const lgfx::IFont *speechFont);
   void setRotation(float radian);

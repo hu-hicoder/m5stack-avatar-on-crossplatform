@@ -14,6 +14,7 @@
 #endif
 
 #include <iostream>           // std::cerr などの標準入出力
+#include "http_server.h"      // HTTPサーバー
 
 #include <M5Unified.h>
 #include <M5GFX.h>
@@ -27,6 +28,9 @@
 
 using namespace m5avatar;
 Avatar avatar;
+
+// HTTPサーバーのインスタンス
+avatar_http::AvatarHttpServer http_server;
 
 // ----------------------------------------------------------
 // デスクトップ上の音量取得関連
@@ -223,6 +227,10 @@ void setup() {
     // avatar.setFace(new MaroFace());
 
     avatar.init(8);
+    
+    // HTTPサーバーを起動（ポート8080）
+    http_server.start(8080);
+    std::cout << "HTTP server started on port 8080" << std::endl;
 }
 
 // ----------------------------------------------------------
@@ -238,6 +246,10 @@ void loop() {
 
 // プログラム終了時の処理
 void cleanup() {
+    // HTTPサーバーを停止
+    http_server.stop();
+    std::cout << "HTTP server stopped" << std::endl;
+    
 #ifdef __linux__
     cleanup_pulseaudio();
 #endif
