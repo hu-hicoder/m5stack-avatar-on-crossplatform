@@ -64,7 +64,18 @@ sudo pacman -S sdl2 libpulse
 
 ### Windows環境
 
-Windows用のAPI `EndpointVolume API` の `IAudioMeterInformation` クラスの `GetPeakValue()` 関数を使用してデスクトップ上の音量を取得しています。
+Windows用のAPI `EndpointVolume API` の `IAudioMeterI#include <mmdeviceapi.h>      // IMMDeviceEnumerator, IMMDevice など
+#include <endpointvolume.h>   // IAudioMeterInformation
+#include <Audioclient.h>      // WASAPI
+#include <iostream>           // std::cerr などの標準入出力
+```
+
+Linux環境では、PulseAudioのヘッダーファイルを読み込む必要があります：
+
+```cpp
+#include <pulse/pulseaudio.h>
+#include <pulse/simple.h>
+#include <pulse/error.h>nformation` クラスの `GetPeakValue()` 関数を使用してデスクトップ上の音量を取得しています。
 
 音量が 0 - 1 の間のfloatで取得されるため、それを `m5stack-avatar` の `avatar.setMouthOpenRatio()` にセットすることでアバターの口の開閉を行っています。
 
