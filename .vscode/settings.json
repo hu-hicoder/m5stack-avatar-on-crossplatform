@@ -3,5 +3,8 @@
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
         "editor.indentSize": "tabSize",
+    },
+    "files.associations": {
+        "string": "cpp"
     }
 }

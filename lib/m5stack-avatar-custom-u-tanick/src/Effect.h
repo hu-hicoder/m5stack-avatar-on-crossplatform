@@ -110,7 +110,6 @@ namespace m5avatar
       switch (exp)
       {
       case Expression::Cry:
-        drawSweatMark(spi, 290, 110, 7, primaryColor, -offset);
         break;
       case Expression::Angry:
         drawAngerMark(spi, 280, 50, 12, primaryColor, bgColor, offset);
@@ -122,10 +121,6 @@ namespace m5avatar
         drawChillMark(spi, 270, 0, 30, primaryColor, offset);
         break;
       case Expression::Gangimari:
-        // ガンギマリのエフェクト（目が回る感じ）
-        spi->drawCircle(280, 50, 15, primaryColor);
-        spi->drawLine(280, 35, 280, 65, primaryColor);
-        spi->drawLine(265, 50, 295, 50, primaryColor);
         break;
       case Expression::Default:
         drawBubbleMark(spi, 290, 40, 10, primaryColor, offset);

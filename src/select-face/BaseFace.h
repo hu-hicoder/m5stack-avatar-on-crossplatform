@@ -30,10 +30,12 @@ namespace m5avatar
       uint16_t primaryColor = ctx->getColorDepth() == 1 ? 1 : ctx->getColorPalette()->get(COLOR_PRIMARY);
       uint16_t backgroundColor = ctx->getColorDepth() == 1 ? 0 : ctx->getColorPalette()->get(COLOR_BACKGROUND);
 
-      if (openRatio > 0) {
+      if (openRatio > 0)
+      {
         spi->fillCircle(x + offsetX, y + offsetY, r, primaryColor);
         // TODO(meganetaaan): Refactor
-        if (exp == Expression::Angry || exp == Expression::Sad) {
+        if (exp == Expression::Angry || exp == Expression::Sad)
+        {
           int x0, y0, x1, y1, x2, y2;
           x0 = x + offsetX - r;
           y0 = y + offsetY - r;
@@ -43,19 +45,23 @@ namespace m5avatar
           y2 = y0 + r;
           spi->fillTriangle(x0, y0, x1, y1, x2, y2, backgroundColor);
         }
-        if (exp == Expression::Happy || exp == Expression::Sleepy) {
+        if (exp == Expression::Happy)
+        {
           int x0, y0, w, h;
           x0 = x + offsetX - r;
           y0 = y + offsetY - r;
           w = r * 2 + 4;
           h = r + 2;
-          if (exp == Expression::Happy) {
+          if (exp == Expression::Happy)
+          {
             y0 += r;
             spi->fillCircle(x + offsetX, y + offsetY, r / 1.5, backgroundColor);
           }
           spi->fillRect(x0, y0, w, h, backgroundColor);
         }
-      } else {
+      }
+      else
+      {
         int x1 = x - r + offsetX;
         int y1 = y - 2 + offsetY;
         int w = r * 2;
@@ -83,11 +89,13 @@ namespace m5avatar
       uint32_t x = rect.getLeft();
       uint32_t y = rect.getTop();
       uint16_t primaryColor = ctx->getColorDepth() == 1 ? 1 : ctx->getColorPalette()->get(COLOR_PRIMARY);
-      if (width == 0 || height == 0) {
+      if (width == 0 || height == 0)
+      {
         return;
       }
       // draw two triangles to make rectangle
-      if (exp == Expression::Angry || exp == Expression::Sad) {
+      if (exp == Expression::Angry || exp == Expression::Sad)
+      {
         int x1, y1, x2, y2, x3, y3, x4, y4;
         int a = isLeft ^ (exp == Expression::Sad) ? -1 : 1;
         int dx = a * 3;
@@ -102,10 +110,13 @@ namespace m5avatar
         y4 = y + height / 2 + dy;
         spi->fillTriangle(x1, y1, x2, y2, x3, y3, primaryColor);
         spi->fillTriangle(x2, y2, x3, y3, x4, y4, primaryColor);
-      } else {
+      }
+      else
+      {
         int x1 = x - width / 2;
         int y1 = y - height / 2;
-        if (exp == Expression::Happy) {
+        if (exp == Expression::Happy)
+        {
           y1 = y1 - 5;
         }
         spi->fillRect(x1, y1, width, height, primaryColor);
@@ -124,7 +135,7 @@ namespace m5avatar
   public:
     BaseMouth() : BaseMouth(0, 0, 0, 0) {}
     BaseMouth(uint16_t minWidth, uint16_t maxWidth, uint16_t minHeight,
-            uint16_t maxHeight)
+              uint16_t maxHeight)
         : minWidth{minWidth},
           maxWidth{maxWidth},
           minHeight{minHeight},
@@ -145,16 +156,16 @@ namespace m5avatar
 
   /**
    * Faceクラスを継承したBase顔描画用のクラス
-  */
+   */
   class BaseFace : public Face
   {
   public:
     BaseFace()
         : Face(new BaseMouth(50, 90, 4, 60), new BoundingRect(148, 163),
-              new BaseEye(8, false),         new BoundingRect(93, 90),
-              new BaseEye(8, true),          new BoundingRect(96, 230),
-              new BaseEyeblow(32, 0, false), new BoundingRect(67, 96),
-              new BaseEyeblow(32, 0, true),  new BoundingRect(72, 230)) {}
+               new BaseEye(8, false), new BoundingRect(93, 90),
+               new BaseEye(8, true), new BoundingRect(96, 230),
+               new BaseEyeblow(32, 0, false), new BoundingRect(67, 96),
+               new BaseEyeblow(32, 0, true), new BoundingRect(72, 230)) {}
   };
 
 } // namespace m5avatar
